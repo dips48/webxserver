@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE sqlMap   
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">  
+  
+<sqlMap namespace="user">  
+<select id="getAll" resultClass="com.dips.demo.User">  
+          select * from user  
+</select> 
+<select id="selectUserByName" parameterClass="java.lang.String"
+resultClass="com.dips.demo.User">
+select * from user where username=#String#
+</select> 
+<insert id="addUser" parameterClass="com.dips.demo.User">
+insert into
+user(username,password) values(#username#,#password#)
+</insert>
+<update id="updateUser" parameterClass="com.dips.demo.User">
+update user
+password=#password# where username=#username#
+</update>
+</sqlMap>  

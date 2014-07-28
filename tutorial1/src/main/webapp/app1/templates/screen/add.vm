@@ -1,0 +1,25 @@
+#set($path = $FE.getPath()+'/'+$FE.getName())
+#set($username=$FE.getUsername())
+#set($list=$FE.getSubFile())
+<h1>欢迎: $!FE.getUsername() <a href="fs.htm">退出</a></h1>
+<p/>
+<h2>当前目录为：$path</h2>
+<p/>
+<form action="$app1Link.setTarget("add")" method="post">
+	<input type="hidden" name="action" value="simple_action"/>
+	#set ($group =$form.add.defaultInstance) 
+	<p>#if($errorMsg)$errorMsg#end</p>
+	<p>
+	<input type="text" name="$group.title.key" value="$!group.title.value"/>
+	<input type="text" name="$group.content.key" value="$!group.content.value"/>
+	<p/>
+	<input type="submit" name="event_submit_do_upload" value="确认"/>
+	<input type="submit" name="event_submit_do_cancel2" value="取消"/>
+	</p>
+</form>
+<p>子目录有：</p>
+#foreach ($element in $list)
+<br/>
+<a href="home.htm?UserName=$username&FilePath=$path&FileName=$element">$element</a>
+#end
+
